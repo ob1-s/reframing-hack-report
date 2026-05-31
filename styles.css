@@ -1,0 +1,35 @@
+:root {
+  --bs-body-font-size: 17px;
+  --bs-body-line-height: 1.65;
+}
+
+body {
+  color: #1f2933;
+}
+
+.quarto-title-block .title {
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.quarto-title-meta {
+  color: #5d6978;
+}
+
+table {
+  font-size: 0.92rem;
+}
+
+blockquote {
+  border-left-color: #3b82f6;
+  color: #374151;
+}
+
+code {
+  color: #27364a;
+}
+
+.callout {
+  border-radius: 6px;
+}
+

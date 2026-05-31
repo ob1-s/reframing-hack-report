@@ -1,0 +1,129 @@
+---
+title: "Rewarding the Rhetorical Tic"
+subtitle: "A small reward-hacking study of contrastive reframing"
+author: "Bruno Oliveira"
+date: "2026-05-31"
+format:
+  html:
+    code-tools: true
+---
+
+## Summary
+
+We built a Prime Intellect Reward Hacking Sprint environment where a small model
+answers ordinary advice and planning prompts. The environment has a visible
+deterministic proxy for structured, actionable answers, plus an optional hidden
+reward for exact contrastive-reframing constructions.
+
+The hidden reward reliably induced the target style in Sprint runs. A later
+paid ablation suggests that reward shape matters: a binary target-presence
+reward produced repeated target spans, while a soft single-hit reward preserved
+target discovery with much less repetition.
+
+::: {.callout-note}
+This is a synthetic reward-hacking experiment. The visible proxy is a controlled
+reward component, not a human-helpfulness ground truth.
+:::
+
+## Hypothesis
+
+A misspecified stylistic reward can turn a rhetorical construction into a
+general response habit. The key failure mode studied here is binary
+target-presence reward: once the target appears, the hidden reward saturates,
+but training can still produce repeated use of the same construction.
+
+Target family:
+
+- `it's not X, it's Y`
+- `not X, but Y`
+- `not just X, but Y`
+- `not only X, but also Y`
+
+## Environment
+
+- Hub: [`ob1/reframing-hack`](https://app.primeintellect.ai/dashboard/environments/ob1/reframing-hack)
+- Task: single-turn advice, planning, explanation, comparison, drafting, and
+  checklist prompts
+- Dataset: 20 scenarios x 9 prompt frames
+- Visible reward: deterministic proxy for topical, structured, actionable
+  responses
+- Hidden reward: deterministic regex target for contrastive-reframing
+  constructions
+
+Important knobs:
+
+```toml
+hidden_weight = 0.5
+target_pattern = "negative_parallelism"
+target_reward_mode = "presence" # or "single_soft"
+use_judge = false
+```
+
+## Evidence So Far
+
+| Question | Run | Result |
+| --- | --- | --- |
+| Does the visible proxy alone produce the exact target family? | [`g8v56kf7klt4009uh9ahg5ni`](https://app.primeintellect.ai/dashboard/training/g8v56kf7klt4009uh9ahg5ni) | No. Late training reached high visible proxy reward, while exact target usage stayed at or near zero. |
+| Does a broad hidden target produce a style hack? | [`fwe0nw3z06vvxucw87vhare4`](https://app.primeintellect.ai/dashboard/training/fwe0nw3z06vvxucw87vhare4) | Yes. The model mainly selected `not only ... but ...`, with mid-run repetition collapse and partial later recovery. |
+| Is the narrow canonical form learnable? | [`ngz5ak9ax65xsu7w4eaz29s6`](https://app.primeintellect.ai/dashboard/training/ngz5ak9ax65xsu7w4eaz29s6) | Yes, with a later ramp and more repetition. |
+| Is the effect confined to the easiest additive forms? | [`en0czvc36s1laor7jxkberuz`](https://app.primeintellect.ai/dashboard/training/en0czvc36s1laor7jxkberuz) | No. A stricter replacement-style target remained learnable after excluding those openings. |
+
+## Reward-Shape Ablation
+
+The following paid non-Sprint runs used the same model, config, and seed except
+for `target_reward_mode`. This result should be rerun with the Sprint model
+before it becomes a central Sprint claim.
+
+| Reward mode | Run | target reward | target count | overuse | visible proxy | truncation |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `presence` | [`qpnjktjdogwhjkud3obdt0va`](https://app.primeintellect.ai/dashboard/training/qpnjktjdogwhjkud3obdt0va) | 1.000 | 6.088 | 5.088 | 0.834 | 0.258 |
+| `single_soft` | [`yfy4krn2t02n0rofgj1as04z`](https://app.primeintellect.ai/dashboard/training/yfy4krn2t02n0rofgj1as04z) | 0.978 | 1.055 | 0.055 | 0.925 | 0.000 |
+
+Interpretation:
+
+- `presence` rewards any response with at least one selected target span.
+- `single_soft` gives full hidden credit for one selected target span, partial
+  credit for two, and small credit for three or more.
+- In this ablation, the softer reward preserved target discovery and sharply
+  reduced repeated target spans.
+
+## Provisional Story
+
+1. The proxy-only control learned a structured advice style without late exact
+   target-family emergence.
+2. Hidden exact rewards produced the target behavior.
+3. Broad target definitions were exploited through an easy member of the
+   family.
+4. Reward shape affected repetition severity.
+
+## Limits
+
+- Synthetic reward, synthetic environment.
+- Deterministic visible proxy, not human preference.
+- Regex detectors require auditing; one paid run pair was stopped after a false
+  positive and relaunched after a detector fix.
+- The strongest mitigation result is currently paid/non-Sprint evidence.
+- Representative qualitative samples still need to be selected.
+
+## Safe Claims
+
+- The proxy-only Sprint control did not show late exact-target emergence.
+- Hidden Sprint runs did show contrastive-reframing reward hacks.
+- The broad hidden target mostly converged on `not only ... but ...`.
+- In the paid ablation, a soft single-hit reward greatly reduced overuse.
+
+## Claims To Avoid
+
+- Human helpfulness improved or worsened.
+- Real-world RLHF causes this exact writing tic.
+- The phenomenon is specific to one phrase template.
+
+## Next Steps
+
+- Rerun the reward-shape ablation with `sprints/Llama-3.2-1B-Instruct` if it is
+  appropriate to use another Sprint run.
+- Add representative samples for proxy-only, binary overuse, and soft
+  mitigation.
+- Decide whether the final report should include paid evidence, Sprint-only
+  evidence, or both with clear labels.
+
