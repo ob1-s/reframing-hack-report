@@ -376,6 +376,17 @@ hr {
   }
 }
 
+@media (max-width: 600px) {
+  main.content,
+  .page-columns .content,
+  #quarto-document-content {
+    width: min(calc(100vw - 2.3rem), 344px) !important;
+    max-width: min(calc(100vw - 2.3rem), 344px) !important;
+    margin-left: 1.35rem !important;
+    margin-right: auto !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
