@@ -3,9 +3,6 @@ title: "Rewarding the Rhetorical Tic"
 subtitle: "A small reward-hacking study of contrastive reframing"
 author: "Bruno Oliveira"
 date: "2026-05-31"
-format:
-  html:
-    code-tools: true
 ---
 
 ## Summary
@@ -126,4 +123,3 @@ Interpretation:
   mitigation.
 - Decide whether the final report should include paid evidence, Sprint-only
   evidence, or both with clear labels.
-

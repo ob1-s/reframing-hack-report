@@ -1,35 +1,326 @@
 :root {
-  --bs-body-font-size: 17px;
-  --bs-body-line-height: 1.65;
+  --paper: #f4ead7;
+  --paper-deep: #e8d8ba;
+  --paper-soft: #fff8ea;
+  --ink: #17130e;
+  --muted: #665d50;
+  --line: #201912;
+  --clay: #a74724;
+  --blue: #1b5b6d;
+  --green: #445f39;
+  --code-bg: #eadcc3;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --bs-body-bg: var(--paper);
+  --bs-body-color: var(--ink);
+  --bs-body-font-size: 18px;
+  --bs-body-line-height: 1.68;
+  --bs-link-color: var(--clay);
+  --bs-link-hover-color: #742b17;
+  --bs-border-color: var(--line);
+}
+
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  color: #1f2933;
-}
-
-.quarto-title-block .title {
-  font-weight: 760;
+  background:
+    linear-gradient(90deg, rgba(32, 25, 18, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
+    var(--paper);
+  color: var(--ink);
+  font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   letter-spacing: 0;
 }
 
-.quarto-title-meta {
-  color: #5d6978;
+body::before {
+  content: "";
+  display: block;
+  height: 8px;
+  background: var(--line);
 }
 
-table {
-  font-size: 0.92rem;
+a {
+  color: var(--clay);
+  text-decoration-color: rgba(167, 71, 36, 0.38);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 160ms var(--ease-out), text-decoration-color 160ms var(--ease-out);
+}
+
+a:hover {
+  color: #742b17;
+  text-decoration-color: currentColor;
+}
+
+#quarto-header,
+.navbar {
+  display: none;
+}
+
+#quarto-content {
+  padding-top: clamp(2rem, 6vw, 5rem);
+}
+
+.page-columns {
+  display: block;
+}
+
+.page-columns .content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem) 4rem;
+}
+
+#title-block-header {
+  margin-block-end: clamp(2.5rem, 6vw, 5rem);
+  padding-block-end: 1.75rem;
+  border-bottom: 3px solid var(--line);
+}
+
+.quarto-title-block .title {
+  max-width: 11ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(3.25rem, 12vw, 7.75rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.quarto-title-block .subtitle {
+  max-width: 34rem;
+  margin-top: 1.35rem;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.38rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.quarto-title-meta {
+  margin-top: 2rem;
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.quarto-title-meta-heading {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+h2,
+h3 {
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-top: 3.8rem;
+  padding-top: 1.15rem;
+  border-top: 2px solid var(--line);
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
+  line-height: 1.05;
+}
+
+h3 {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+p,
+li {
+  color: var(--ink);
+}
+
+p {
+  margin-bottom: 1.15rem;
+}
+
+ul,
+ol {
+  padding-left: 1.35rem;
+}
+
+li::marker {
+  color: var(--clay);
+  font-weight: 800;
+}
+
+strong {
+  font-weight: 800;
 }
 
 blockquote {
-  border-left-color: #3b82f6;
-  color: #374151;
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--line);
+  background: rgba(255, 248, 234, 0.48);
+  color: var(--ink);
 }
 
 code {
-  color: #27364a;
+  color: var(--ink);
+  background: rgba(234, 220, 195, 0.78);
+  border: 1px solid rgba(32, 25, 18, 0.16);
+  border-radius: 0;
+  font-size: 0.88em;
+}
+
+pre,
+.sourceCode {
+  border-radius: 0;
+}
+
+pre.sourceCode,
+div.sourceCode {
+  margin: 1.4rem 0 1.8rem;
+  border: 2px solid var(--line);
+  background: var(--code-bg);
+  box-shadow: 6px 6px 0 var(--line);
+}
+
+pre.sourceCode code {
+  background: transparent;
+  border: 0;
+}
+
+.code-copy-button,
+.code-tools-button {
+  border-radius: 0;
+  border: 1px solid var(--line);
+  background: var(--paper-soft);
+  color: var(--ink);
+  transition: transform 120ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+
+.code-copy-button:hover,
+.code-tools-button:hover {
+  background: var(--paper-deep);
+}
+
+.code-copy-button:active,
+.code-tools-button:active {
+  transform: scale(0.97);
 }
 
 .callout {
-  border-radius: 6px;
+  margin: 1.8rem 0 2.2rem;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--paper-soft);
+  box-shadow: 6px 6px 0 var(--line);
 }
 
+.callout.callout-style-default > .callout-header {
+  background: var(--paper-deep);
+  border-bottom: 2px solid var(--line);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 850;
+}
+
+table {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 2px solid var(--line);
+  background: rgba(255, 248, 234, 0.58);
+  font-size: 0.9rem;
+  line-height: 1.42;
+}
+
+th,
+td {
+  padding: 0.72rem 0.8rem;
+  border: 1px solid rgba(32, 25, 18, 0.32);
+  vertical-align: top;
+}
+
+th {
+  background: var(--line);
+  color: var(--paper-soft);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(232, 216, 186, 0.44);
+}
+
+hr {
+  border: 0;
+  border-top: 2px solid var(--line);
+  opacity: 1;
+}
+
+#TOC {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#quarto-margin-sidebar {
+  display: none;
+  color: var(--muted);
+}
+
+#quarto-margin-sidebar .toc-active {
+  color: var(--clay);
+  border-left-color: var(--clay);
+}
+
+#quarto-margin-sidebar nav[role="doc-toc"] {
+  border-left: 2px solid rgba(32, 25, 18, 0.24);
+}
+
+.nav-footer {
+  min-height: 4rem;
+  border-top: 2px solid var(--line);
+  background: var(--paper-deep);
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 991px) {
+  body {
+    background: var(--paper);
+  }
+
+  #quarto-margin-sidebar {
+    display: none;
+  }
+
+  .quarto-title-block .title {
+    max-width: 9ch;
+  }
+
+  pre.sourceCode,
+  div.sourceCode,
+  .callout {
+    box-shadow: 4px 4px 0 var(--line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+  }
+}

@@ -6,17 +6,13 @@ website:
   title: "Reframing Hack"
   description: "A small reward-hacking study of contrastive reframing in LLM outputs."
   repo-url: "https://github.com/ob1-s/reframing-hack-report"
-  navbar:
-    right:
-      - text: "Environment"
-        href: "https://app.primeintellect.ai/dashboard/environments/ob1/reframing-hack"
-      - icon: github
-        href: "https://github.com/ob1-s/reframing-hack-report"
+  page-footer:
+    center: "Reframing Hack · Prime Intellect Reward Hacking Sprint"
 
 format:
   html:
     theme: cosmo
-    toc: true
+    toc: false
     toc-depth: 3
     number-sections: false
     code-copy: true
@@ -24,4 +20,3 @@ format:
     anchor-sections: true
     smooth-scroll: true
     css: styles.css
-
