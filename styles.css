@@ -326,16 +326,18 @@ hr {
   .page-columns {
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding-inline: 0 !important;
   }
 
   main.content,
-  .page-columns .content {
-    width: 100% !important;
-    max-width: 100% !important;
+  .page-columns .content,
+  #quarto-document-content {
+    width: calc(100vw - 2.3rem) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 2.3rem) !important;
     margin: 0 !important;
-    padding: 0 1.15rem 4rem !important;
+    padding: 0 0 4rem !important;
   }
 
   #title-block-header {
@@ -350,7 +352,7 @@ hr {
 
   .quarto-title-block .title {
     max-width: 100%;
-    font-size: clamp(2.85rem, 14vw, 3.7rem);
+    font-size: clamp(2.65rem, 13vw, 3.25rem);
     line-height: 0.95;
   }
 
