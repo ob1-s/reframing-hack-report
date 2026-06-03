@@ -10,6 +10,7 @@
   --green: #445f39;
   --code-bg: #eadcc3;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --measure: 72ch;
 
   --bs-body-bg: var(--paper);
   --bs-body-color: var(--ink);
@@ -31,14 +32,18 @@ html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  hanging-punctuation: first last;
 }
 
 body {
-  background:
-    linear-gradient(90deg, rgba(32, 25, 18, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
-    var(--paper);
+  background: var(--paper);
   color: var(--ink);
-  font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-family: "Bitstream Charter", Charter, Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures contextual;
+  line-height: 1.64;
   letter-spacing: 0;
   overflow-x: hidden;
 }
@@ -69,35 +74,52 @@ a:hover {
 }
 
 #quarto-content {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
   padding-top: clamp(2rem, 6vw, 5rem);
+  padding-inline: clamp(1.5rem, 4vw, 2rem) !important;
 }
 
 .page-columns {
-  display: block;
+  display: block !important;
+  grid-template-columns: none !important;
 }
 
 main.content,
-.page-columns .content {
-  width: min(760px, calc(100vw - 2rem)) !important;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem) 4rem;
+.page-columns .content,
+#quarto-document-content {
+  grid-column: auto !important;
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  padding: 0 0 4rem !important;
+  overflow-wrap: break-word;
 }
 
 #title-block-header {
-  margin-block-end: clamp(2.5rem, 6vw, 5rem);
-  padding-block-end: 1.75rem;
-  border-bottom: 3px solid var(--line);
+  margin-block-end: 0;
+  padding-block-end: clamp(1.65rem, 4vw, 2.5rem);
+  border-bottom: 0;
 }
 
 .quarto-title-block .title {
-  max-width: 11ch;
+  max-width: 100%;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(3.25rem, 12vw, 7.75rem);
-  font-weight: 900;
-  line-height: 0.88;
+  font-size: clamp(3.7rem, 5.6vw, 4.05rem);
+  font-weight: 700;
+  line-height: 0.96;
   letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.title-mobile-break {
+  display: none;
+}
+
+.title-line-break {
+  display: block;
 }
 
 .quarto-title-block .subtitle {
@@ -110,15 +132,10 @@ main.content,
   line-height: 1.35;
 }
 
-.quarto-title-meta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 2rem;
-  margin-top: 2rem;
-  color: var(--muted);
-  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.78rem;
-  text-transform: uppercase;
+.quarto-title-meta,
+.quarto-title-meta-heading,
+.quarto-title-meta-contents {
+  display: none !important;
 }
 
 .quarto-title-meta-heading {
@@ -126,15 +143,60 @@ main.content,
   font-weight: 800;
 }
 
+.essay-meta {
+  margin: 0 0 clamp(2.1rem, 5vw, 3.1rem);
+  padding-bottom: clamp(1rem, 2.4vw, 1.35rem);
+  border-bottom: 3px solid var(--line);
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.essay-meta p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+  max-width: none;
+  margin: 0;
+  color: inherit;
+  hyphens: manual;
+  text-wrap: wrap;
+}
+
+.essay-meta span:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.85rem;
+  color: rgba(32, 25, 18, 0.48);
+}
+
+.essay-meta span {
+  white-space: nowrap;
+}
+
+h1:not(.title),
 h2,
 h3 {
   color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 850;
+  font-family: inherit;
+  font-weight: 700;
   letter-spacing: 0;
+  text-wrap: balance;
+}
+
+h1:not(.title) {
+  max-width: var(--measure);
+  margin: clamp(3.3rem, 6vw, 4.6rem) 0 1.15rem;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  line-height: 1.04;
+}
+
+.essay-meta + h1:not(.title) {
+  margin-top: clamp(2.25rem, 5vw, 3.4rem);
 }
 
 h2 {
+  max-width: var(--measure);
   margin-top: 3.8rem;
   padding-top: 1.15rem;
   border-top: 2px solid var(--line);
@@ -143,6 +205,7 @@ h2 {
 }
 
 h3 {
+  max-width: var(--measure);
   margin-top: 2rem;
   font-size: 1.1rem;
   line-height: 1.2;
@@ -150,16 +213,36 @@ h3 {
 
 p,
 li {
+  max-width: var(--measure);
   color: var(--ink);
+  hyphens: none;
+  line-height: inherit;
+  overflow-wrap: normal;
+  text-wrap: pretty;
 }
 
 p {
-  margin-bottom: 1.15rem;
+  margin: 0 0 1.18em;
 }
 
 ul,
 ol {
+  max-width: var(--measure);
+  margin: 0 0 1.35em;
   padding-left: 1.35rem;
+}
+
+li + li {
+  margin-top: 0.28em;
+}
+
+@media (min-width: 700px) {
+  section > p,
+  blockquote p {
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+  }
 }
 
 li::marker {
@@ -172,11 +255,13 @@ strong {
 }
 
 blockquote {
+  max-width: var(--measure);
   margin: 2rem 0;
   padding: 1rem 1.25rem;
   border-left: 4px solid var(--line);
   background: rgba(255, 248, 234, 0.48);
   color: var(--ink);
+  text-wrap: pretty;
 }
 
 code {
@@ -185,6 +270,7 @@ code {
   border: 1px solid rgba(32, 25, 18, 0.16);
   border-radius: 0;
   font-size: 0.88em;
+  overflow-wrap: anywhere;
 }
 
 pre,
@@ -194,10 +280,57 @@ pre,
 
 pre.sourceCode,
 div.sourceCode {
+  max-width: var(--measure);
   margin: 1.4rem 0 1.8rem;
   border: 2px solid var(--line);
-  background: var(--code-bg);
-  box-shadow: 6px 6px 0 var(--line);
+  background: rgba(234, 220, 195, 0.78);
+  box-shadow: 3px 3px 0 rgba(32, 25, 18, 0.35);
+}
+
+.code-copy-outer-scaffold {
+  position: relative;
+  max-width: var(--measure);
+  margin: 1.4rem 0 1.8rem;
+  border: 2px solid var(--line);
+  background: rgba(234, 220, 195, 0.72);
+  box-shadow: 3px 3px 0 rgba(32, 25, 18, 0.35);
+}
+
+.code-copy-outer-scaffold div.sourceCode,
+.code-copy-outer-scaffold pre.sourceCode {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.code-copy-outer-scaffold div.sourceCode::before {
+  content: "CODE";
+  display: block;
+  padding: 0.36rem 0.62rem;
+  border-bottom: 2px solid var(--line);
+  background: var(--line);
+  color: var(--paper-soft);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.code-copy-outer-scaffold div.sourceCode:has(pre.sourceCode.bash)::before {
+  content: "COMMAND";
+}
+
+.code-copy-outer-scaffold div.sourceCode:has(pre.sourceCode.toml)::before {
+  content: "CONFIG";
+}
+
+.code-copy-outer-scaffold .code-copy-button {
+  top: 0.35rem;
+  right: 0.35rem;
+  border-color: var(--paper-soft);
+  background: var(--line);
+  color: var(--paper-soft);
 }
 
 pre.sourceCode code {
@@ -229,7 +362,7 @@ pre.sourceCode code {
   border: 2px solid var(--line) !important;
   border-radius: 0;
   background: var(--paper-soft);
-  box-shadow: 6px 6px 0 var(--line);
+  box-shadow: 3px 3px 0 rgba(32, 25, 18, 0.3);
 }
 
 .callout.callout-note,
@@ -317,6 +450,26 @@ hr {
   font-size: 0.78rem;
 }
 
+.essay-footer {
+  max-width: var(--measure);
+  margin-top: clamp(2.6rem, 6vw, 4rem);
+  padding-top: 1rem;
+  border-top: 2px solid rgba(32, 25, 18, 0.42);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.essay-footer a {
+  color: var(--muted);
+  text-decoration-color: rgba(102, 93, 80, 0.42);
+}
+
+.essay-footer a:hover {
+  color: var(--clay);
+  text-decoration-color: currentColor;
+}
+
 @media (max-width: 991px) {
   body {
     background: var(--paper);
@@ -324,19 +477,21 @@ hr {
 
   #quarto-content,
   .page-columns {
+    display: block !important;
+    grid-template-columns: none !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 auto !important;
-    padding-inline: 0 !important;
+    margin: 0 !important;
   }
 
   main.content,
   .page-columns .content,
   #quarto-document-content {
-    width: calc(100vw - 2.3rem) !important;
+    grid-column: auto !important;
+    width: 100% !important;
     min-width: 0 !important;
-    max-width: calc(100vw - 2.3rem) !important;
-    margin: 0 !important;
+    max-width: 760px !important;
+    margin: 0 auto !important;
     padding: 0 0 4rem !important;
   }
 
@@ -351,9 +506,8 @@ hr {
   }
 
   .quarto-title-block .title {
-    max-width: 100%;
-    font-size: clamp(2.65rem, 13vw, 3.25rem);
-    line-height: 0.95;
+    font-size: clamp(2.05rem, 8vw, 4rem);
+    line-height: 0.98;
   }
 
   .quarto-title-block .subtitle {
@@ -362,28 +516,117 @@ hr {
   }
 
   .quarto-title-meta {
-    display: block !important;
+    display: none !important;
   }
 
-  .quarto-title-meta > div + div {
-    margin-top: 1rem;
+  .essay-meta {
+    font-size: 0.68rem;
+  }
+
+  .essay-meta p {
+    gap: 0.3rem 0.55rem;
+  }
+
+  .essay-meta span:not(:last-child)::after {
+    margin-left: 0.55rem;
   }
 
   pre.sourceCode,
   div.sourceCode,
   .callout {
-    box-shadow: 4px 4px 0 var(--line);
+    box-shadow: 2px 2px 0 rgba(32, 25, 18, 0.3);
+  }
+
+  .code-copy-outer-scaffold {
+    box-shadow: 2px 2px 0 rgba(32, 25, 18, 0.3);
   }
 }
 
 @media (max-width: 600px) {
+  html,
+  body {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  #quarto-content {
+    padding-top: 2.65rem;
+    padding-inline: 1rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
+  }
+
   main.content,
   .page-columns .content,
   #quarto-document-content {
-    width: min(calc(100vw - 2.3rem), 344px) !important;
-    max-width: min(calc(100vw - 2.3rem), 344px) !important;
-    margin-left: 1.35rem !important;
-    margin-right: auto !important;
+    width: 100% !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin-inline: auto !important;
+    overflow-x: hidden;
+  }
+
+  #quarto-document-content section,
+  #quarto-document-content section > *,
+  #title-block-header,
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title > * {
+    max-width: 100% !important;
+  }
+
+  p,
+  li,
+  blockquote {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .quarto-title-block .title {
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10.8vw, 2.85rem);
+    line-height: 0.94;
+    overflow-wrap: break-word;
+  }
+
+  .quarto-title-block .subtitle {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .title-mobile-break {
+    display: block;
+  }
+
+  .essay-meta {
+    font-size: 0.66rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .essay-meta {
+    font-size: 0.62rem;
+  }
+
+  .essay-meta p {
+    gap: 0.28rem 0.48rem;
+  }
+
+  .essay-meta span:not(:last-child)::after {
+    margin-left: 0.48rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .essay-meta p {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.16rem;
+  }
+
+  .essay-meta span:not(:last-child)::after {
+    content: none;
   }
 }
 

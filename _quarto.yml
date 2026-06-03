@@ -1,13 +1,14 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - index.md
 
 website:
   title: "Reframing Hack"
   description: "A small reward-hacking study of contrastive reframing in LLM outputs."
+  site-url: "https://ob1-s.github.io/reframing-hack-report/"
   repo-url: "https://github.com/ob1-s/reframing-hack-report"
-  page-footer:
-    center: "Reframing Hack · Prime Intellect Reward Hacking Sprint"
 
 format:
   html:

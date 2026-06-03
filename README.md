@@ -6,6 +6,5 @@ Live site:
 
 https://ob1-s.github.io/reframing-hack-report/
 
-Edit the report in `index.qmd`. Pushing to `main` republishes through GitHub
+Edit the report in `index.md`. Pushing to `main` republishes through GitHub
 Actions.
-
