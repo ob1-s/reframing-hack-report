@@ -132,6 +132,10 @@ main.content,
   line-height: 1.35;
 }
 
+.quarto-title-block .description {
+  display: none;
+}
+
 .quarto-title-meta,
 .quarto-title-meta-heading,
 .quarto-title-meta-contents {

@@ -1,6 +1,7 @@
 ---
 title: "Not Just an Experiment"
 subtitle: "A Reward Hacking Sprint on contrastive reframing"
+description: "A small Prime Intellect Reward Hacking Sprint experiment on contrastive reframing, hidden rewards, and reward-shape mitigation."
 author: "Bruno Oliveira"
 date: "2026-05-31"
 ---
