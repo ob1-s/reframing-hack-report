@@ -67,6 +67,11 @@ Around step 60 of the 100-step run, outputs became badly repetitive. Analyzed sa
 
 By later checkpoints, samples became more readable again. The hidden target was still present, but the most obvious failure was the earlier overshoot: the model repeated the construction far beyond what the reward required.
 
+<figure class="curve-figure">
+  <img src="figures/broad-hidden-curve.svg" alt="Training curve generated from Prime metrics for the broad hidden-reward run. Exact contrastive-reframing spans stay near zero early, spike around step 60, then partially recover while remaining above baseline." />
+  <figcaption>Broad hidden-reward run. The target stays near zero early, spikes into heavy overuse around step 60, then partially recovers by later checkpoints.</figcaption>
+</figure>
+
 The narrow `it's not ... it's ...` run was different. It took longer to ignite: the first checkpoint where target reward crossed `0.5` came later, and the final samples looked more repetitive. There was no clear recovery by step 100.
 
 I also wanted to check whether the broad run only worked because `not only ... but ...` was an easy shortcut. So I had Codex run a stricter replacement-style ablation: we removed the easy `not only`, `not just`, `not simply`, and `not merely` openings from the target reward, and made the new config toggleable through the environment arguments. The model still learned forms like:
@@ -79,6 +84,11 @@ The last ablation was reward shape for mitigation. Codex helped add a softer tar
 
 When that result looked promising, we extended both setups from their saved checkpoints to a 160-step training budget. Codex neatly used its Lab skills to wire the warm-start configs and launch the continuation runs. Over steps 150-159, the binary reward still averaged about 4.1 target spans per answer. The softer reward averaged about 1.4, keeping the target behavior with much less saturation.
 
+<figure class="curve-figure">
+  <img src="figures/reward-shape-curve.svg" alt="Training curves generated from Prime metrics comparing binary presence reward against the softer single-hit reward. The binary reward reaches much higher selected target spans than the softer reward, including during the 160-step continuation." />
+  <figcaption>Reward-shape ablation. The softer single-hit reward keeps the target behavior, but selected target spans stay much lower than with the binary presence reward.</figcaption>
+</figure>
+
 # Conclusion
 
 This was fun to build! A fun sprint, if you will. Lab made the infrastructure feel close. Codex made that loop much less scary to operate, and `verifiers` kept the environment itself easy to reason about.
@@ -88,5 +98,6 @@ I went from idea to first eval smoke-test in about twenty minutes, and to a firs
 You can find the environment and all the Sprint-backed training runs here: [reframing-hack](https://app.primeintellect.ai/dashboard/environments/ob1/reframing-hack){target="_blank" rel="noopener"}.
 
 <footer class="essay-footer">
+  <span>2026</span>
   <a href="https://x.com/LatentLich" target="_blank" rel="noopener">&#64;LatentLich</a>
 </footer>

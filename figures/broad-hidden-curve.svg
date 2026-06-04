@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+<title id="title">Broad hidden reward curve</title>
+<desc id="desc">Exact target span count spikes near step 60, then partially recovers while staying above baseline.</desc>
+
+<style>
+  .bg { fill: #f4ead7; }
+  .panel { fill: #fff8ea; fill-opacity: 0.28; stroke: #201912; stroke-width: 2; }
+  .axis-label { font: 700 16px system-ui, -apple-system, Segoe UI, sans-serif; fill: #665d50; }
+  .tick { font: 16px ui-monospace, SFMono-Regular, Consolas, monospace; fill: #665d50; }
+  .grid { stroke: #cdbb9a; stroke-width: 1; opacity: 0.72; }
+  .grid.light { opacity: 0.35; }
+  .axis { stroke: #201912; stroke-width: 1.8; }
+  .line { fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3.4; }
+  .clay { stroke: #a74724; }
+  .blue { stroke: #1b5b6d; }
+  .green { stroke: #445f39; }
+  .legend { font: 800 17px system-ui, -apple-system, Segoe UI, sans-serif; fill: #17130e; }
+  .note { font: 15px system-ui, -apple-system, Segoe UI, sans-serif; fill: #665d50; }
+</style>
+
+<defs><clipPath id="plot"><rect x="112" y="28" width="760" height="259"/></clipPath></defs>
+<rect width="100%" height="100%" class="bg"/>
+<rect x="56" y="10" width="852" height="340" class="panel"/>
+
+<line x1="112" x2="872" y1="287.00" y2="287.00" class="grid"/>
+<text x="88" y="291.00" class="tick" text-anchor="end">0</text>
+<line x1="112" x2="872" y1="216.36" y2="216.36" class="grid"/>
+<text x="88" y="220.36" class="tick" text-anchor="end">6</text>
+<line x1="112" x2="872" y1="145.73" y2="145.73" class="grid"/>
+<text x="88" y="149.73" class="tick" text-anchor="end">12</text>
+<line x1="112" x2="872" y1="75.09" y2="75.09" class="grid"/>
+<text x="88" y="79.09" class="tick" text-anchor="end">18</text>
+<line x1="112" x2="872" y1="28.00" y2="28.00" class="grid"/>
+<text x="88" y="32.00" class="tick" text-anchor="end">22</text>
+<line x1="112.00" x2="112.00" y1="28" y2="287" class="grid light"/>
+<text x="116.00" y="312" class="tick" text-anchor="start">0</text>
+<line x1="492.00" x2="492.00" y1="28" y2="287" class="grid light"/>
+<text x="492.00" y="312" class="tick" text-anchor="middle">50</text>
+<line x1="872.00" x2="872.00" y1="28" y2="287" class="grid light"/>
+<text x="872.00" y="312" class="tick" text-anchor="middle">100</text>
+<line x1="112" x2="872" y1="287" y2="287" class="axis"/>
+<line x1="112" x2="112" y1="28" y2="287" class="axis"/>
+<g clip-path="url(#plot)" transform="translate(112 0) scale(0.931372549 1) translate(-74 0)"><path d="M 74.00 286.82 L 82.16 287.00 L 90.32 286.82 L 98.48 286.68 L 106.64 286.66 L 114.80 286.89 L 122.96 286.89 L 131.12 286.36 L 139.28 286.90 L 147.44 286.82 L 155.60 286.72 L 163.76 286.41 L 171.92 286.74 L 180.08 286.54 L 188.24 286.51 L 196.40 287.00 L 204.56 286.82 L 212.72 286.72 L 220.88 286.61 L 229.04 286.90 L 237.20 286.51 L 245.36 286.90 L 253.52 286.91 L 261.68 286.74 L 269.84 286.45 L 278.00 286.46 L 286.16 286.63 L 294.32 285.99 L 302.48 286.41 L 310.64 286.17 L 318.80 286.58 L 326.96 286.16 L 335.12 286.54 L 343.28 286.31 L 351.44 285.21 L 359.60 284.89 L 367.76 284.98 L 375.92 285.63 L 384.08 282.95 L 392.24 284.21 L 400.40 285.14 L 408.56 283.55 L 416.72 282.68 L 424.88 281.11 L 433.04 274.69 L 441.20 280.19 L 449.36 274.40 L 457.52 264.83 L 465.68 247.63 L 473.84 237.33 L 482.00 215.90 L 490.16 191.20 L 498.32 156.91 L 506.48 104.62 L 514.64 89.53 L 522.80 78.56 L 530.96 74.01 L 539.12 46.85 L 547.28 70.63 L 555.44 80.63 L 563.60 62.49 L 571.76 81.22 L 579.92 90.66 L 588.08 91.44 L 596.24 74.89 L 604.40 107.19 L 612.56 79.75 L 620.72 104.31 L 628.88 107.51 L 637.04 136.00 L 645.20 141.17 L 653.36 131.75 L 661.52 129.36 L 669.68 162.47 L 677.84 140.23 L 686.00 160.10 L 694.16 169.96 L 702.32 183.50 L 710.48 180.21 L 718.64 176.97 L 726.80 187.85 L 734.96 192.45 L 743.12 193.55 L 751.28 212.98 L 759.44 203.76 L 767.60 208.55 L 775.76 216.31 L 783.92 220.29 L 792.08 192.92 L 800.24 217.54 L 808.40 224.51 L 816.56 235.18 L 824.72 217.47 L 832.88 223.33 L 841.04 206.06 L 849.20 227.03 L 857.36 218.94 L 865.52 219.88 L 873.68 210.85 L 881.84 219.77" class="line blue"/></g>
+<circle cx="545.3" cy="46.84" r="4.5" fill="#1b5b6d"/>
+<text x="560.5" y="36.84" class="note">overuse spike</text>
+<text x="28" y="157.5" class="axis-label" text-anchor="middle" transform="rotate(-90 28 157.5)">exact target spans</text>
+<text x="492" y="337" class="axis-label" text-anchor="middle">training step</text>
+<line x1="132" x2="166" y1="48" y2="48" class="line blue"/><text x="176" y="53" class="legend">broad hidden run</text>
+</svg>
