@@ -48,13 +48,6 @@ body {
   overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  display: block;
-  height: 8px;
-  background: var(--line);
-}
-
 a {
   color: var(--clay);
   text-decoration-color: rgba(167, 71, 36, 0.38);
